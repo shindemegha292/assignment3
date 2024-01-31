@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RGB to Hex Color Converter</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f8f8f8;
+    }
+    #color-picker {
+      text-align: center;
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="color-picker">
+    <label for="red">Red:</label>
+    <input type="number" id="red" min="0" max="255" value="0">
+    <br>
+    <label for="green">Green:</label>
+    <input type="number" id="green" min="0" max="255" value="0">
+    <br>
+    <label for="blue">Blue:</label>
+    <input type="number" id="blue" min="0" max="255" value="0">
+    <br>
+    <button onclick="convertToHex()">Convert to Hex</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function convertToHex() {
+      const red = document.getElementById('red').value;
+      const green = document.getElementById('green').value;
+      const blue = document.getElementById('blue').value;
+
+      const hex = rgbToHex(red, green, blue);
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = `Hexadecimal Color: ${hex}`;
+      resultDiv.style.color = `#${hex}`;
+    }
+
+    function rgbToHex(r, g, b) {
+      const toHex = (value) => {
+        const hex = Number(value).toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+      };
+
+      const redHex = toHex(r);
+      const greenHex = toHex(g);
+      const blueHex = toHex(b);
+
+      return redHex + greenHex + blueHex;
+    }
+  </script>
+</body>
+</html>
+
